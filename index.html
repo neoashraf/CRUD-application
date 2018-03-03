@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>JS Issue Tracker</title>
+    <title>User Management System</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
-  <body>
+  <body onload="fetchUsers()">
 
     <div class="container">
 
@@ -20,8 +20,8 @@
         <hr>
 
         <!-- Alert info -->
-        <div class="alert alert-info alert-dismissible" role="alert" ng-if="info">
-          <button type="button" class="close" aria-label="Close"><span aria-hidden="true" ng-click="clearInfo()">&times;</span></button>
+        <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           done news
         </div>
 
@@ -29,7 +29,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Indexxxasdfasd</th>
+              <th>Index</th>
               <th>Name</th>
               <th>Id</th>
               <th>Age</th>
@@ -38,13 +38,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="user in users">
+            <tr>
               <td> {{ $index+1 }}</td>
               <td> {{user.name}} </td>
               <td>{{user.id}}</td>
               <td>{{user.age}}</td>
-              <td> <button class="btn btn-info btn-sm"  type="button" data-toggle="modal" data-target="#myModalEdit" ng-click="selectUser(user)">Edit</button> </td>
-              <td> <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#myModalDelete" ng-click="selectUser(user)">Delete</button> </td>
+              <td> <button class="btn btn-info btn-sm"  type="button" data-toggle="modal" data-target="#myModalEdit" >Edit</button> </td>
+              <td> <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#myModalDelete" >Delete</button> </td>
             </tr>         
           </tbody>
         </table>
@@ -56,12 +56,12 @@
       <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+      <script src="main.js"></script>
 
        <!-- Trigger the modal with a button -->
 
 
-      <!-- Modal -->
+      <!-- Modal Add new -->
       <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -80,44 +80,44 @@
               <form class="form-horizontal">
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                  <label for="inputName" class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name" ng-model="newUser.id">
+                    <input type="text" class="form-control" id="inputName" placeholder="Name">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Id</label>
+                  <label for="inputID" class="col-sm-2 control-label">Id</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="ID" ng-model="newUser.id">
+                    <input type="text" class="form-control" id="inputID" placeholder="ID" >
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">CGPA</label>
+                  <label for="inputCgpa" class="col-sm-2 control-label">CGPA</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="CGPA" ng-model="newUser.cgpa">
+                    <input type="text" class="form-control" id="inputCgpa" placeholder="CGPA">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Birth Day</label>
+                  <label for="inputBirthDay" class="col-sm-2 control-label">Birth Day</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Birth Day" ng-model="newUser.age">
+                    <input type="text" class="form-control" id="inputBirthDay" placeholder="Birth Day" >
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Cell Number</label>
+                  <label for="inputCellNum" class="col-sm-2 control-label">Cell Number</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Cell Number" ng-model="newUser.cgpa">
+                    <input type="text" class="form-control" id="inputCellNum" placeholder="Cell Number" >
                   </div>
                 </div>
                         
                 <!-- button -->
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
-                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="saveUser();">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="saveUser()" data-dismiss="modal">Save</button>
                   </div>
                 </div>
 
@@ -136,7 +136,7 @@
       </div>
 
 
-    <!-- Modal -->
+    <!-- Modal Edit -->
     <div id="myModalEdit" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
@@ -157,35 +157,35 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name" ng-model="newUser.id">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Id</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="ID" ng-model="newUser.id">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="ID">
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">CGPA</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="CGPA" ng-model="newUser.cgpa">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="CGPA" >
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Birth Day</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Birth Day" ng-model="newUser.age">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Birth Day" >
                   </div>
                 </div>
 
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Cell Number</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Cell Number" ng-model="newUser.cgpa">
+                    <input type="text" class="form-control" id="inputEmail3" placeholder="Cell Number">
                   </div>
                 </div>
               
@@ -208,7 +208,7 @@
       </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal Delete -->
     <div id="myModalDelete" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
@@ -229,7 +229,7 @@
 
           <!-- Footer -->
           <div class="modal-footer">
-            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" ng-click="deleteUser()">Yes</button>         
+            <button type="submit" class="btn btn-default pull-left" data-dismiss="modal" onclick="deleteUser()">Yes</button>         
             <button type="button" class="btn btn-default pull-right" data-dismiss="modal">No</button>
           </div>
 
