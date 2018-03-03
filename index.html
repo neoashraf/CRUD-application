@@ -8,7 +8,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
-  <body onload="fetchUsers()">
+  <body>
 
     <div class="container">
 
@@ -39,10 +39,10 @@
           </thead>
           <tbody>
             <tr>
-              <td> {{ $index+1 }}</td>
-              <td> {{user.name}} </td>
-              <td>{{user.id}}</td>
-              <td>{{user.age}}</td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td></td>
               <td> <button class="btn btn-info btn-sm"  type="button" data-toggle="modal" data-target="#myModalEdit" >Edit</button> </td>
               <td> <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#myModalDelete" >Delete</button> </td>
             </tr>         
@@ -103,7 +103,7 @@
                 <div class="form-group">
                   <label for="inputBirthDay" class="col-sm-2 control-label">Birth Day</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputBirthDay" placeholder="Birth Day" >
+                    <input type="date" class="form-control" id="inputBirthDay" placeholder="Birth Day" >
                   </div>
                 </div>
 

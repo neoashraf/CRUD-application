@@ -23,17 +23,15 @@ function saveUser(){
 		localStorage.setItem('users',JSON.stringify(users))
 	}
 
-	
 	//document.getElementById('myModal').reset();
 	fetchUsers();
-
 }
 
 
 
 function deleteUser(id){
 	var users = JSON.parse(localStorage.getItem('users'));
-	for(var i =0; i<users.length() ; i++){
+	for(var i =0; i<users.length; i++){
 		if(users[i] == id)
 			users.splice(i,1);
 	}
@@ -43,6 +41,24 @@ function deleteUser(id){
 	fetchUsers();
 }
 
+function EditUser(id) {
+	
+}
+
 function fetchUsers(){
-	console.log("got it");
+	var users = JSON.parse(localStorage.getItem('users'));
+	for(var i =0; i<users.length ; i++){
+		var name = users[i].name;
+		var id = users[i].id;
+		var age = calculate_age(new Date(users[i].birthDay) );
+		console.log(age); 
+		var cgpa = users[i].cgpa;
+		var cellNum = users[i].cellNum;
+	}
+}
+
+function calculate_age(birthDay){
+	var diff_ms = Date.now() - birthDay.getTime(); 
+	var age_dt = new Date(diff_ms);
+	return Math.abs(age_dt.getUTCFullYear() - 1970);
 }
