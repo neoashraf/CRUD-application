@@ -8,7 +8,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   </head>
-  <body>
+  <body onload="fetchUsers()">
 
     <div class="container">
 
@@ -33,26 +33,27 @@
               <th>Name</th>
               <th>Id</th>
               <th>Age</th>
+              <th>Details</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td> </td>
-              <td> </td>
-              <td> </td>
+          <tbody id= "userList">
+<!--             <tr>
+              <td id=""></td>
               <td></td>
-              <td> <button class="btn btn-info btn-sm"  type="button" data-toggle="modal" data-target="#myModalEdit" >Edit</button> </td>
+              <td></td>
+              <td></td>
+              <td><button class="btn btn-info btn-sm"  type="button" data-toggle="modal" data-target="#myModalEdit" >Edit</button> </td>
               <td> <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#myModalDelete" >Delete</button> </td>
-            </tr>         
+            </tr>    -->      
           </tbody>
         </table>
 
     </div>
     
       <!-- CDN links -->
-      
+      <script src="chance.js"></script> 
       <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
       <!-- Latest compiled and minified JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -135,6 +136,33 @@
         </div>
       </div>
 
+    <!-- Modal view -->
+    <div id="myModalView" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+          <!-- Header -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">User Details</h4>
+          </div>
+
+          <!-- Body -->
+          <div class="modal-body">
+
+          </div>
+
+          <!-- Footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+
+        </div>
+     </div>
+
+    </div>
 
     <!-- Modal Edit -->
     <div id="myModalEdit" class="modal fade" role="dialog">
@@ -223,13 +251,13 @@
 
           <!-- Body -->
           <div class="modal-body">
-            <h3 style="color: red">You are going to delete the user "{{clickedUser.fullName}} "". All information will be deleted and can't be undone. </h3>
+            <h3 style="color: red">You are going to delete this user. All information will be deleted and can't be undone. </h3>
             <br/>
           </div>
 
           <!-- Footer -->
           <div class="modal-footer">
-            <button type="submit" class="btn btn-default pull-left" data-dismiss="modal" onclick="deleteUser()">Yes</button>         
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal" onclick="deleteUser()">Yes</button>         
             <button type="button" class="btn btn-default pull-right" data-dismiss="modal">No</button>
           </div>
 
