@@ -31,13 +31,20 @@ function saveUser(){
 
 
 function deleteUser(key){
-	var users = JSON.parse(localStorage.getItem('users'));
-	for(var i = 0; i < users.length; i++){
-		if(users[i].key == key)
-			users.splice(i,1);
+	var result = confirm('Want to delete?');
+	if(result){
+		var users = JSON.parse(localStorage.getItem('users'));
+		for(var i = 0; i < users.length; i++){
+			console.log("yyy");
+			if(users[i].key == key){
+				users.splice(i,1);
+				console.log("xxxx");
+			}
+
+		}
+		localStorage.setItem('users',JSON.stringify(users)); 
+		fetchUsers();
 	}
-	localStorage.setItem('users',JSON.stringify(users)); 
-	fetchUsers();
 }
 
 function EditUser(key) {
@@ -49,7 +56,7 @@ function fetchUsers(){
 
 	userList.innerHTML = '';
 
-	for(var i =0; i<users.length ; i++){
+	for(var i = 0; i< users.length ; i++){
 		var key = users[i].key;
 		var name = users[i].name;
 		var id = users[i].id;
@@ -63,7 +70,7 @@ function fetchUsers(){
 								'<td>' + age + '</td>' +
 								'<td><button class="btn btn-info btn-sm"  type="button"  data-toggle="modal" data-target="#myModalView">View</button></td>' +
 								'<td><button class="btn btn-info btn-sm"  type="button"  data-toggle="modal" data-target="#myModalEdit">Edit</button></td>' +
-		              			'<td><button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#myModalDelete">Delete</button> </td>'+
+		              			'<td><button class="btn btn-danger btn-sm" type="button" onclick="deleteUser(\''+ key +'\')">Delete</button> </td>'+
 								'</tr>';
 	}
 }
@@ -73,5 +80,3 @@ function calculate_age(birthDay){
 	var age_dt = new Date(diff_ms);
 	return Math.abs(age_dt.getUTCFullYear() - 1970);
 }
-
-
