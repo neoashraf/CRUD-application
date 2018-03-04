@@ -1,5 +1,6 @@
 function saveUser(){
 
+	// get the new input
 	var userKey = chance.guid();
 	var userName = document.getElementById('inputName').value;
 	var userId = document.getElementById('inputID').value;
@@ -7,6 +8,7 @@ function saveUser(){
 	var userBirthDay = document.getElementById('inputBirthDay').value;
 	var userCellnum = document.getElementById('inputCellNum').value;
 
+	//create object of the new input
 	var user = {
 		key : userKey,
 		name : userName,
@@ -15,6 +17,8 @@ function saveUser(){
 		birthDay : userBirthDay,
 		cellNum : userCellnum
 	}
+
+	//store in local storage
 	if(!localStorage.getItem('users')){
 		var users = [];
 		users.push(user);
@@ -24,7 +28,7 @@ function saveUser(){
 		users.push(user);
 		localStorage.setItem('users',JSON.stringify(users))
 	}
-	
+
 	//reset the input fields in modal
 	document.getElementById('inputName').value = '';
 	document.getElementById('inputID').value = '';
@@ -32,14 +36,16 @@ function saveUser(){
 	document.getElementById('inputBirthDay').value ='';
 	document.getElementById('inputCellNum').value ='';
 
+	//display the updated list of users
 	fetchUsers();
 }
 
 
 
 function deleteUser(key){
-	var result = confirm('Want to delete?');
-	if(result){
+
+	var result = confirm('Want to delete?');	//confirmation
+	if(result){									// if confirm
 		var users = JSON.parse(localStorage.getItem('users'));
 		for(var i = 0; i < users.length; i++){
 			if(users[i].key == key){
