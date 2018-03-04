@@ -24,6 +24,13 @@ function saveUser(){
 		users.push(user);
 		localStorage.setItem('users',JSON.stringify(users))
 	}
+	
+	//reset the input fields in modal
+	document.getElementById('inputName').value = '';
+	document.getElementById('inputID').value = '';
+	document.getElementById('inputCgpa').value = '';
+	document.getElementById('inputBirthDay').value ='';
+	document.getElementById('inputCellNum').value ='';
 
 	fetchUsers();
 }
@@ -35,10 +42,8 @@ function deleteUser(key){
 	if(result){
 		var users = JSON.parse(localStorage.getItem('users'));
 		for(var i = 0; i < users.length; i++){
-			console.log("yyy");
 			if(users[i].key == key){
 				users.splice(i,1);
-				console.log("xxxx");
 			}
 
 		}
