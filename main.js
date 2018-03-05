@@ -39,6 +39,7 @@ function saveUser(){
 
 	//display the updated list of users
 	fetchUsers();
+	actionConfirmation.innerHTML = "User is registered successfully.";
 }
 
 function deleteUser(key){
@@ -53,6 +54,7 @@ function deleteUser(key){
 		}
 		localStorage.setItem('users',JSON.stringify(users)); 
 		fetchUsers();
+		actionConfirmation.innerHTML = "User is deleted successfully.";
 	}
 }
 
@@ -84,6 +86,7 @@ function edited(){
 
 	localStorage.setItem('users',JSON.stringify(users));
 	fetchUsers();
+	actionConfirmation.innerHTML = "User information is updated successfully.";
 }
 
 function viewUser(key){
@@ -140,4 +143,8 @@ function calculate_age(birthDay){
 	var diff_ms = Date.now() - birthDay.getTime(); 
 	var age_dt = new Date(diff_ms);
 	return Math.abs(age_dt.getUTCFullYear() - 1970);
+}
+
+function clearAlert(){
+	actionConfirmation.innerHTML = "";
 }
