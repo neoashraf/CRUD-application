@@ -39,30 +39,13 @@
             </tr>
           </thead>
           <tbody id= "userList">
-<!--             <tr>
-              <td id=""></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><button class="btn btn-info btn-sm"  type="button" data-toggle="modal" data-target="#myModalEdit" >Edit</button> </td>
-              <td> <button class="btn btn-danger btn-sm" type="button" data-toggle="modal" data-target="#myModalDelete" >Delete</button> </td>
-            </tr>    -->      
+   
           </tbody>
         </table>
 
     </div>
-    
-      <!-- CDN links -->
-      <script src="chance.js"></script> 
-      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-      <!-- Latest compiled and minified JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <script src="main.js"></script>
 
-       <!-- Trigger the modal with a button -->
-
-
-      <!-- Modal Add new -->
+    <!-- Modal Add new -->
       <div id="myModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
@@ -150,8 +133,22 @@
           </div>
 
           <!-- Body -->
-          <div class="modal-body">
-
+          <div class="modal-body" id = "userListDetails">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Index</th>
+                    <th>Name</th>
+                    <th>Id</th>
+                    <th>BirthDay</th>
+                    <th>CGPA</th>
+                    <th>Cell Number</th>
+                  </tr>
+                </thead>
+                <tbody id= "userDetails">
+                    <!-- value will be generated with the view button click -->
+                </tbody>
+            </table>
           </div>
 
           <!-- Footer -->
@@ -183,44 +180,44 @@
             <form class="form-horizontal">
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                  <label for="inputName1" class="col-sm-2 control-label">Name</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Name">
+                    <input type="text" class="form-control" id="inputName1" placeholder="Name">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Id</label>
+                  <label for="inputID1" class="col-sm-2 control-label">Id</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="ID">
+                    <input type="text" class="form-control" id="inputID1" placeholder="ID">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">CGPA</label>
+                  <label for="inputCgpa1" class="col-sm-2 control-label">CGPA</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="CGPA" >
+                    <input type="text" class="form-control" id="inputCgpa1" placeholder="CGPA" >
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Birth Day</label>
+                  <label for="inputBirthDay1" class="col-sm-2 control-label">Birth Day</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Birth Day" >
+                    <input type="date" class="form-control" id="inputBirthDay1" placeholder="Birth Day" >
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Cell Number</label>
+                  <label for="inputCellNum1" class="col-sm-2 control-label">Cell Number</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputEmail3" placeholder="Cell Number">
+                    <input type="text" class="form-control" id="inputCellNum1" placeholder="Cell Number">
                   </div>
                 </div>
               
               <!-- button -->
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                  <button type="button" class="btn btn-default" data-dismiss="modal" onclick="edited()">Done</button>
                 </div>
               </div>
 
@@ -265,6 +262,18 @@
 
       </div>
     </div>
+    
+      <!-- CDN links -->
+      <script src="chance.js"></script> 
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script src="main.js"></script>
+
+       <!-- Trigger the modal with a button -->
+
+
+      
 
   </body>
 </html>

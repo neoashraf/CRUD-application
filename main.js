@@ -1,3 +1,4 @@
+var index;
 function saveUser(){
 
 	// get the new input
@@ -40,8 +41,6 @@ function saveUser(){
 	fetchUsers();
 }
 
-
-
 function deleteUser(key){
 
 	var result = confirm('Want to delete?');	//confirmation
@@ -51,22 +50,73 @@ function deleteUser(key){
 			if(users[i].key == key){
 				users.splice(i,1);
 			}
-
 		}
 		localStorage.setItem('users',JSON.stringify(users)); 
 		fetchUsers();
 	}
 }
 
-function EditUser(key) {
-	
+function editUser(key) {
+	var users = JSON.parse(localStorage.getItem('users'));
+	for(var i = 0; i < users.length; i++){
+		if(users[i].key == key){
+			index = i;
+			break;
+		}
+	}
+	document.getElementById('inputName1').value = users[index].name;
+	document.getElementById('inputID1').value = users[index].id;
+	document.getElementById('inputCgpa1').value = users[index].cgpa;
+	document.getElementById('inputBirthDay1').value = users[index].birthDay;
+	document.getElementById('inputCellNum1').value = users[index].cellNum;
+	localStorage.setItem('users',JSON.stringify(users)); 
+}
+
+function edited(){
+
+	var users = JSON.parse(localStorage.getItem('users')); 
+
+	users[index].name = document.getElementById('inputName1').value;
+	users[index].id = document.getElementById('inputID1').value;
+	users[index].cgpa = document.getElementById('inputCgpa1').value;
+	users[index].birthDay = document.getElementById('inputBirthDay1').value;
+	users[index].cellNum = document.getElementById('inputCellNum1').value;
+
+	localStorage.setItem('users',JSON.stringify(users));
+	fetchUsers();
+}
+
+function viewUser(key){
+	var i;
+	var users = JSON.parse(localStorage.getItem('users'));
+	for(i = 0; i < users.length; i++){
+		if(users[i].key == key){
+			break;
+		}
+	}
+
+	var name = users[i].name;
+	var id = users[i].id;
+	var birthDay = users[i].birthDay;
+	var cgpa = users[i].cgpa;
+	var cellNum = users[i].cellNum;
+
+	userDetails.innerHTML = '<tr>' + 
+							'<td>' + (i+1) + '</td>' + 
+							'<td >' + name + '</td>' + 
+							'<td>' + id + '</td>' + 
+							'<td>' + birthDay + '</td>' +
+							'<td>' + cgpa + '</td>' +
+							'<td>' + cellNum + '</td>' +
+							'</tr>';
+
 }
 
 function fetchUsers(){
 	var users = JSON.parse(localStorage.getItem('users'));
 
 	userList.innerHTML = '';
-
+	console.log(users);
 	for(var i = 0; i< users.length ; i++){
 		var key = users[i].key;
 		var name = users[i].name;
@@ -76,11 +126,11 @@ function fetchUsers(){
 		var cellNum = users[i].cellNum;
 		userList.innerHTML += 	'<tr>' + 
 								'<td>' + (i+1) + '</td>' + 
-								'<td>' + name + '</td>' + 
+								'<td >' + name + '</td>' + 
 								'<td>' + id + '</td>' + 
 								'<td>' + age + '</td>' +
-								'<td><button class="btn btn-info btn-sm"  type="button"  data-toggle="modal" data-target="#myModalView">View</button></td>' +
-								'<td><button class="btn btn-info btn-sm"  type="button"  data-toggle="modal" data-target="#myModalEdit">Edit</button></td>' +
+								'<td><button class="btn btn-info btn-sm"  type="button"  onclick="viewUser(\''+ key +'\')"data-toggle="modal" data-target="#myModalView">View</button></td>' +
+								'<td><button class="btn btn-info btn-sm"  type="button"  onclick="editUser(\''+ key +'\')" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>' +
 		              			'<td><button class="btn btn-danger btn-sm" type="button" onclick="deleteUser(\''+ key +'\')">Delete</button> </td>'+
 								'</tr>';
 	}
