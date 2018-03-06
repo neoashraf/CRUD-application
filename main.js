@@ -144,6 +144,7 @@ function sortList(){
 			if(shouldSwitch){
 				tr[i].parentNode.insertBefore(tr[i+1],tr[i]);
 				switching = true;
+				console.log('tr[i]');
 			}
 		}
 	}
@@ -183,7 +184,7 @@ function searchUser(){
 	table = document.getElementById("userList");
 	tr = table.getElementsByTagName("tr");
 	console.log(tr);
-	for (i = 1; i < tr.length; i++) {
+	for (i = 0; i < tr.length; i++) {
 		td = tr[i].getElementsByTagName("td")[1];
 		if (td) {
 		  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
