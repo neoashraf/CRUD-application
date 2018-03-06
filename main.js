@@ -1,4 +1,4 @@
-var index;
+var toEdit;
 function saveUser(){
 
 	// get the new input
@@ -62,15 +62,15 @@ function editUser(key) {
 	var users = JSON.parse(localStorage.getItem('users'));
 	for(var i = 0; i < users.length; i++){
 		if(users[i].key == key){
-			index = i;
+			toEdit = i;
 			break;
 		}
 	}
-	document.getElementById('inputName1').value = users[index].name;
-	document.getElementById('inputID1').value = users[index].id;
-	document.getElementById('inputCgpa1').value = users[index].cgpa;
-	document.getElementById('inputBirthDay1').value = users[index].birthDay;
-	document.getElementById('inputCellNum1').value = users[index].cellNum;
+	document.getElementById('inputName1').value = users[toEdit].name;
+	document.getElementById('inputID1').value = users[toEdit].id;
+	document.getElementById('inputCgpa1').value = users[toEdit].cgpa;
+	document.getElementById('inputBirthDay1').value = users[toEdit].birthDay;
+	document.getElementById('inputCellNum1').value = users[toEdit].cellNum;
 	localStorage.setItem('users',JSON.stringify(users)); 
 }
 
@@ -78,11 +78,11 @@ function edited(){
 
 	var users = JSON.parse(localStorage.getItem('users')); 
 
-	users[index].name = document.getElementById('inputName1').value;
-	users[index].id = document.getElementById('inputID1').value;
-	users[index].cgpa = document.getElementById('inputCgpa1').value;
-	users[index].birthDay = document.getElementById('inputBirthDay1').value;
-	users[index].cellNum = document.getElementById('inputCellNum1').value;
+	users[toEdit].name = document.getElementById('inputName1').value;
+	users[toEdit].id = document.getElementById('inputID1').value;
+	users[toEdit].cgpa = document.getElementById('inputCgpa1').value;
+	users[toEdit].birthDay = document.getElementById('inputBirthDay1').value;
+	users[toEdit].cellNum = document.getElementById('inputCellNum1').value;
 
 	localStorage.setItem('users',JSON.stringify(users));
 	fetchUsers();
@@ -90,6 +90,7 @@ function edited(){
 }
 
 function viewUser(key){
+
 	var i;
 	var users = JSON.parse(localStorage.getItem('users'));
 	for(i = 0; i < users.length; i++){
@@ -98,6 +99,7 @@ function viewUser(key){
 		}
 	}
 
+	var index = i + 1;
 	var name = users[i].name;
 	var id = users[i].id;
 	var birthDay = users[i].birthDay;
@@ -105,7 +107,7 @@ function viewUser(key){
 	var cellNum = users[i].cellNum;
 
 	userDetails.innerHTML = '<tr>' + 
-							'<td>' + (i+1) + '</td>' + 
+							'<td>' + index + '</td>' + 
 							'<td >'+ name + '</td>' + 
 							'<td>' + id + '</td>' + 
 							'<td>' + birthDay + '</td>' +
@@ -115,12 +117,90 @@ function viewUser(key){
 
 }
 
+
+var isAscending = true;
+function sortList(){
+	
+	if(isAscending){
+		isAscending =  false;
+
+		var table, tr, td, x, y, shouldSwitch,switching;
+		
+		table = document.getElementById('userList');
+
+		switching = true;
+		while(switching){
+			switching = false;
+			tr = table.getElementsByTagName('tr');
+			for(var i = 0;i < (tr.length - 1);i++){
+				shouldSwitch = false;
+				x = tr[i].getElementsByTagName('td')[3];
+				y = tr[i+1].getElementsByTagName('td')[3];
+				if(x.innerHTML > y.innerHTML){
+					shouldSwitch = true;
+					break;
+				}
+			}
+			if(shouldSwitch){
+				tr[i].parentNode.insertBefore(tr[i+1],tr[i]);
+				switching = true;
+			}
+		}
+	}
+	else{	
+		isAscending = true;
+
+		var table, tr, td, x, y, shouldSwitch,switching;
+		
+		table = document.getElementById('userList');
+
+		switching = true;
+		while(switching){
+			switching = false;
+			tr = table.getElementsByTagName('tr');
+			for(var i = 0;i < (tr.length - 1);i++){
+				shouldSwitch = false;
+				x = tr[i].getElementsByTagName('td')[3];
+				y = tr[i+1].getElementsByTagName('td')[3];
+				if(x.innerHTML < y.innerHTML){
+					shouldSwitch = true;
+					break;
+				}
+			}
+			if(shouldSwitch){
+				tr[i].parentNode.insertBefore(tr[i+1],tr[i]);
+				switching = true;
+			}
+		}
+	}
+}
+
+function searchUser(){
+
+	var input, filter, table, tr, td, i;
+	input = document.getElementById("searchName");
+	filter = input.value.toUpperCase();
+	table = document.getElementById("userList");
+	tr = table.getElementsByTagName("tr");
+	console.log(tr);
+	for (i = 1; i < tr.length; i++) {
+		td = tr[i].getElementsByTagName("td")[1];
+		if (td) {
+		  if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		    tr[i].style.display = "";
+		  } else {
+		    tr[i].style.display = "none";
+		  }
+		}       
+	}
+}
+
 function fetchUsers(){
 	var users = JSON.parse(localStorage.getItem('users'));
 
 	userList.innerHTML = '';
-	console.log(users);
 	for(var i = 0; i< users.length ; i++){
+		var index = i+1;
 		var key = users[i].key;
 		var name = users[i].name;
 		var id = users[i].id;
@@ -128,15 +208,16 @@ function fetchUsers(){
 		var cgpa = users[i].cgpa;
 		var cellNum = users[i].cellNum;
 		userList.innerHTML += 	'<tr>' + 
-								'<td>' + (i+1) + '</td>' + 
+								'<td>' + index + '</td>' + 
 								'<td >'+ name + '</td>' + 
 								'<td>' + id + '</td>' + 
 								'<td>' + age + '</td>' +
-								'<td><button class="btn btn-info btn-sm"  type="button"  onclick="viewUser(\''+ key +'\')"data-toggle="modal" data-target="#myModalView">View</button></td>' +
+								'<td><button class="btn btn-info btn-sm"  type="button"  onclick="viewUser(\''+ key +'\')" data-toggle="modal" data-target="#myModalView">View</button></td>' +
 								'<td><button class="btn btn-info btn-sm"  type="button"  onclick="editUser(\''+ key +'\')" data-toggle="modal" data-target="#myModalEdit">Edit</button></td>' +
 		              			'<td><button class="btn btn-danger btn-sm" type="button" onclick="deleteUser(\''+ key +'\')">Delete</button> </td>'+
 								'</tr>';
 	}
+	clearAlert();
 }
 
 function calculate_age(birthDay){

@@ -32,26 +32,30 @@
               <th>Index</th>
               <th>Name</th>
               <th>Id</th>
-              <th>Age</th>
+              <th>Age 
+                <button onclick="sortList()" >
+                  <span class= "glyphicon glyphicon-sort"></span>
+                </button>
+              </th>
               <th>Details</th>
               <th>Edit</th>
               <th>Delete</th>
             
                   <form class="navbar-form" role="search">
                     <div class="input-group">
-                      <input type="text" class="form-control pull-right" style="width: 200px; margin-right: 20px, " placeholder="Search">
-                      <span class="input-group-btn">
+                      <input type="text" class="form-control pull-right" id = "searchName" onkeyup = "searchUser()" style="width: 100%; margin-right: 20px, " placeholder="Search">
+<!--                       <span class="input-group-btn">
                         <button type="reset" class="btn btn-default">
                           <span class="glyphicon glyphicon-remove">
                             <span class="sr-only">Close</span>
                           </span>
                         </button>
-                        <button type="submit" class="btn btn-default" onclick="search()">
+                        <button type="submit" class="btn btn-default">
                           <span class="glyphicon glyphicon-search">
                             <span class="sr-only">Search</span>
                           </span>
                         </button>
-                      </span>
+                      </span> -->
                     </div>
                 </form>
               
