@@ -36,6 +36,25 @@
               <th>Details</th>
               <th>Edit</th>
               <th>Delete</th>
+            
+                  <form class="navbar-form" role="search">
+                    <div class="input-group">
+                      <input type="text" class="form-control pull-right" style="width: 200px; margin-right: 20px, " placeholder="Search">
+                      <span class="input-group-btn">
+                        <button type="reset" class="btn btn-default">
+                          <span class="glyphicon glyphicon-remove">
+                            <span class="sr-only">Close</span>
+                          </span>
+                        </button>
+                        <button type="submit" class="btn btn-default" onclick="search()">
+                          <span class="glyphicon glyphicon-search">
+                            <span class="sr-only">Search</span>
+                          </span>
+                        </button>
+                      </span>
+                    </div>
+                </form>
+              
             </tr>
           </thead>
           <tbody id= "userList">

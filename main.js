@@ -106,7 +106,7 @@ function viewUser(key){
 
 	userDetails.innerHTML = '<tr>' + 
 							'<td>' + (i+1) + '</td>' + 
-							'<td >' + name + '</td>' + 
+							'<td >'+ name + '</td>' + 
 							'<td>' + id + '</td>' + 
 							'<td>' + birthDay + '</td>' +
 							'<td>' + cgpa + '</td>' +
@@ -129,7 +129,7 @@ function fetchUsers(){
 		var cellNum = users[i].cellNum;
 		userList.innerHTML += 	'<tr>' + 
 								'<td>' + (i+1) + '</td>' + 
-								'<td >' + name + '</td>' + 
+								'<td >'+ name + '</td>' + 
 								'<td>' + id + '</td>' + 
 								'<td>' + age + '</td>' +
 								'<td><button class="btn btn-info btn-sm"  type="button"  onclick="viewUser(\''+ key +'\')"data-toggle="modal" data-target="#myModalView">View</button></td>' +
@@ -142,7 +142,7 @@ function fetchUsers(){
 function calculate_age(birthDay){
 	var diff_ms = Date.now() - birthDay.getTime(); 
 	var age_dt = new Date(diff_ms);
-	return Math.abs(age_dt.getUTCFullYear() - 1970);
+	return Math.abs(age_dt.getUTCFullYear() - 1970); 
 }
 
 function clearAlert(){
