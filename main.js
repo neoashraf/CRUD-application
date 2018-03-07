@@ -136,17 +136,21 @@ function sortList(){
 				shouldSwitch = false;
 				x = tr[i].getElementsByTagName('td')[3];
 				y = tr[i+1].getElementsByTagName('td')[3];
+
 				if(x.innerHTML > y.innerHTML){
 					shouldSwitch = true;
 					break;
 				}
+
 			}
+			
 			if(shouldSwitch){
 				tr[i].parentNode.insertBefore(tr[i+1],tr[i]);
 				switching = true;
-				console.log('tr[i]');
+
 			}
 		}
+		actionConfirmation.innerHTML = "Sorted in ascending order according to age.";
 	}
 	else{	
 		isAscending = true;
@@ -163,6 +167,7 @@ function sortList(){
 				shouldSwitch = false;
 				x = tr[i].getElementsByTagName('td')[3];
 				y = tr[i+1].getElementsByTagName('td')[3];
+
 				if(x.innerHTML < y.innerHTML){
 					shouldSwitch = true;
 					break;
@@ -171,8 +176,10 @@ function sortList(){
 			if(shouldSwitch){
 				tr[i].parentNode.insertBefore(tr[i+1],tr[i]);
 				switching = true;
+
 			}
 		}
+		actionConfirmation.innerHTML = "Sorted in descending order according to age.";
 	}
 }
 
